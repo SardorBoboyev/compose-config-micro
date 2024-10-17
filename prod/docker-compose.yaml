@@ -44,6 +44,46 @@ services:
       - eureka-service
       - db
 
+  chat-service:
+    image: boboyevsardor/chat-service1
+    ports:
+      - "8099:8099"
+    environment:
+      EUREKA_URI: http://eureka-service:8761/eureka/
+      DB_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: 2004
+    depends_on:
+      - eureka-service
+      - db
+
+
+  message-service:
+    image: boboyevsardor/message-service1
+    ports:
+      - "8084:8084"
+    environment:
+      EUREKA_URI: http://eureka-service:8761/eureka/
+      DB_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: 2004
+    depends_on:
+      - eureka-service
+      - db
+
+  story-service:
+    image: boboyevsardor/story-service1
+    ports:
+      - "8096:8096"
+    environment:
+      EUREKA_URI: http://eureka-service:8761/eureka/
+      DB_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: 2004
+    depends_on:
+      - eureka-service
+      - db
+
 
   db:
     image: postgres
